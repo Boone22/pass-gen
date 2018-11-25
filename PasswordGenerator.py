@@ -96,4 +96,4 @@ if user_spec():
   char_list.append(spec_list)
 
 main()
-print("\n\nThank you for using Connor's password generator!")
+input("\n\nThank you for using Connor's password generator!")
