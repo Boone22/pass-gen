@@ -6,6 +6,7 @@ alpha_up = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"
 alpha_down = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 integer_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 spec_list = ["?", "!", "&", "$", "#"]
+char_list = []
 
 def user_pass_length():
   invalidans = True
@@ -77,23 +78,22 @@ def user_spec():
   return spec_final
 
 def main():
+  pass_length = user_pass_length()
+  char_list.extend(alpha_down)
+  
+  if user_upcase():
+    char_list.extend(alpha_up)
+
+  if user_integer():
+    char_list.extend(integer_list)
+
+  if user_spec():
+    char_list.extend(spec_list)
+
   print("Your final password is:")
-  for i in range(0, pass_length):
-    temp = char_list[secrets.randbelow(len(char_list))]   # indexing char_list for one of the above 4 lists
-    temp = temp[secrets.randbelow(len(temp))]             # generating random number below the length of the list just chosen and indexes it
-    print(temp, end="")
-
-pass_length = user_pass_length()
-char_list = [alpha_down]
-
-if user_upcase():
-  char_list.append(alpha_up)
-
-if user_integer():
-  char_list.append(integer_list)
-
-if user_spec():
-  char_list.append(spec_list)
+  for _ in range(0, pass_length):
+    password = char_list[secrets.randbelow(len(char_list))]   # indexing char_list for a character
+    print(password, end="")
 
 main()
-input("\n\nThank you for using Connor's password generator!")
+print("\n\nThank you for using Connor's password generator!")
